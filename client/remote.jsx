@@ -67,7 +67,7 @@ class Remote extends React.Component {
     let component = components[this.props.component];
     return <div>
       {component ?
-        component({ now: Date.now() }) :
+        component({ now: Date.now(), myProp: this.props.myProp }) :
         null}
       {pending ?
         <Spinner />

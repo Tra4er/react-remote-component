@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {connect} from "react-redux";
 import Remote from './remote'
 
 class List extends React.Component {
@@ -23,6 +23,10 @@ class List extends React.Component {
 
   render() {
     let {component} = this.state;
+    let myProp = "HEELLLLOOOOO";
+
+    console.log(component);
+    console.log("list - store: " + this.props.widgets);
 
     return <table>
       <tbody>
@@ -45,7 +49,7 @@ class List extends React.Component {
             </ul>
           </td>
           <td>
-            <Remote component={component} />
+            <Remote component={component} myProp={myProp} />
           </td>
         </tr>
       </tbody>
@@ -53,4 +57,11 @@ class List extends React.Component {
   }
 }
 
-export default List;
+function mapStateToProps(state) {
+    return {
+        widgets: state.widgets.widgets,
+        cols: state.widgetsPanel.cols,
+    }
+}
+
+export default connect(mapStateToProps)(List);
